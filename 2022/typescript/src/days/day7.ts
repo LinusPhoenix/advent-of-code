@@ -133,14 +133,7 @@ const root = {
 commands.slice(1).reduce<Directory>((tree, command) => parseCommand(tree, command!), root);
 calculateDirSize(root);
 const smallDirectories = findSmallDirectories(root);
-const sumOfSmallDirectories = smallDirectories
-    .map((dir) => {
-        if (dir.size == null) {
-            throw new Error("Directory with uncalculated size!");
-        }
-        return dir.size;
-    })
-    .reduce(sum, 0);
+const sumOfSmallDirectories = smallDirectories.map((dir) => dir.size).reduce(sum);
 
 console.log(
     `The total size of directories whose size is at most 100000 is ${sumOfSmallDirectories}.`,
