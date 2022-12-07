@@ -42,7 +42,6 @@ const parseCommand = (currentDir: Directory, command: Command): Directory => {
             return dir;
         }
     } else if (command.input.startsWith("ls")) {
-        const dirs = command.output!.filter((line) => line.startsWith("dir"));
         const files = command.output!.filter((line) => !line.startsWith("dir"));
         files
             .map((line) => {
