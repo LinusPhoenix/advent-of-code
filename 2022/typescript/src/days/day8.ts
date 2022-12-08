@@ -2,13 +2,8 @@ import { promises as fs } from "fs";
 
 type TreeVisibility = {
     height: number;
-    above: boolean;
-    below: boolean;
-    left: boolean;
-    right: boolean;
+    isVisible: boolean;
 };
-
-const isTreeVisible = (tree: TreeVisibility) => tree.above || tree.below || tree.left || tree.right;
 
 const isTreeVisibleFromNeighbors = (tree: TreeVisibility, neighbors: TreeVisibility[]) =>
     !neighbors.some((neighbor) => neighbor.height >= tree.height);
@@ -29,11 +24,8 @@ const treeGrid = lines.map((line) =>
     line.split("").map((char) => {
         return {
             height: parseInt(char),
-            above: false,
-            below: false,
-            left: false,
-            right: false,
-        } as TreeVisibility;
+            isVisible: false,
+        };
     }),
 );
 
@@ -51,17 +43,14 @@ const treeGridVisibility = treeGrid.map((row, rowIndex, rows) =>
         const isVisibleRight = isTreeVisibleFromNeighbors(tree, row.slice(colIndex + 1));
         return {
             ...tree,
-            above: isVisibleAbove,
-            below: isVisibleBelow,
-            left: isVisibleLeft,
-            right: isVisibleRight,
+            isVisible: isVisibleAbove || isVisibleBelow || isVisibleLeft || isVisibleRight,
         };
     }),
 );
 
 const visibleTrees = treeGridVisibility
     .flatMap((row) => row.flatMap((tree) => tree))
-    .filter(isTreeVisible);
+    .filter((tree) => tree.isVisible);
 
 console.log(`The total number of visible trees is: ${visibleTrees.length}.`);
 
