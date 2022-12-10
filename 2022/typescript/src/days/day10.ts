@@ -56,5 +56,3 @@ const pixels = registerHistory.slice(0, -1).map((state) => {
 
 const screenLines = splitArrayIntoChunks(pixels, 40);
 screenLines.forEach((line) => console.log(line.join("")));
-// ##...#...####..##...##....##..###..####.
-// ##...#...####..##...##....##..###..#####
