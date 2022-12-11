@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import { splitArrayIntoChunks } from "../util/chunkArray.js";
-import { sum } from "../util/sum.js";
+import { sum } from "../util/reducers.js";
 
 type RegisterHistory = {
     completedCycles: number;

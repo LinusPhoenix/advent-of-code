@@ -1,5 +1,5 @@
 import { promises as fs } from "fs";
-import { sum } from "../util/sum.js";
+import { sum } from "../util/reducers.js";
 
 enum Move {
     Rock = 1,

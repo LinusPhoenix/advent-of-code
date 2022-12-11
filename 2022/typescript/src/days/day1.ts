@@ -1,5 +1,5 @@
 import { promises as fs } from "fs";
-import { sum } from "../util/sum.js";
+import { sum } from "../util/reducers.js";
 
 const input = await fs.readFile("../input/day1.txt", "utf8");
 
