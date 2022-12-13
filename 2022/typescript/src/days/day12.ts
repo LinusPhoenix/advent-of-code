@@ -78,6 +78,10 @@ const dijkstra = (grid: Node[][], start: Node, partTwo: boolean) => {
         unvisited.delete(current);
         let nextCandidates = [...unvisited.values()].filter((node) => !isNaN(node.distance));
         if (partTwo) {
+            // In part two of the problem, we are looking for the shortest path from any starting position with height "a".
+            // It's unnecessary to explore any paths where we traverse a position with height "a":
+            // Let p be a path from a position s to the goal that traverses a position t != s with height "a".
+            // p must by definition be longer than the path p' from t to the goal.
             nextCandidates = nextCandidates.filter(
                 (node) => !(node.height === aHeight) && !(node.height === startingHeight),
             );
